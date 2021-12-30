@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Chat from '../components/screens/Chat';
 import Home from '../components/screens/Home';
 import Login from '../components/screens/Login';
 import Post from '../components/screens/Post';
 import Profile from '../components/screens/Profile';
+import { UserContext } from '../hooks/UserContext';
 
-function routes() {
-  const isAuth = false;
+function AppRoutes() {
+  const [user] = useContext(UserContext);
 
-  if (!isAuth) {
+  if (!user) {
     return <Login />;
   }
 
@@ -23,4 +24,4 @@ function routes() {
   );
 }
 
-export default routes;
+export default AppRoutes;

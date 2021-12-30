@@ -5,13 +5,16 @@ import App from './app/App';
 import reportWebVitals from './utils/reportWebVitals';
 import * as serviceWorker from './utils/serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import { UserContextWrapper } from './hooks/UserContext';
 
 ReactDOM.render(
   <StrictMode>
-    <ColorModeScript />
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <UserContextWrapper>
+      <ColorModeScript />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserContextWrapper>
   </StrictMode>,
   document.getElementById('root')
 );

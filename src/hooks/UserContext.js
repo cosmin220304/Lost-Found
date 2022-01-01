@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 const UserContext = React.createContext();
 
-//todo: uncomment and delete test
 const UserContextWrapper = ({ children }) => {
-  const [user, setUser] = useState('test');
+  const [user, setUser] = useState();
 
   useEffect(() => {
-    // setUser(JSON.parse(localStorage.getItem('user')));
+    setUser(JSON.parse(localStorage.getItem('user')));
   }, []);
 
   useEffect(() => {
     if (user) {
-      // localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     }
   }, [user]);
 

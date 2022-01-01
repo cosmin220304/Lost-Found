@@ -3,6 +3,7 @@ import {
   FormLabel,
   FormErrorMessage,
   Input,
+  FormHelperText,
   Flex,
   Button,
   Text,
@@ -13,7 +14,7 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../hooks/UserContext';
 import axios from 'axios';
 
-function Login() {
+function Register() {
   const [, setUser] = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -28,14 +29,14 @@ function Login() {
   async function onSubmit(values, actions) {
     try {
       const { data } = await axios.post(
-        `userService/login?email=${values.email}&password=${values.password}`,
+        `userService/register?name=${values.name}&email=${values.email}&password=${values.password}`,
         {}
       );
       setUser(data);
       navigate('/');
     } catch (error) {
       if (error.response.status === 400) {
-        alert('Email and password do not match!');
+        alert('Email already in use!');
       } else {
         alert('Something went wrong!');
       }
@@ -46,14 +47,31 @@ function Login() {
 
   return (
     <Flex color="twitter.900" direction={'column'} alignItems={'center'}>
-      <Text p="4">
-        You are not logged in! <br />
-        Please fill the data below before continuing:
-      </Text>
+      <Text p="4">Create a new account:</Text>
 
-      <Formik initialValues={{ email: '', password: '' }} onSubmit={onSubmit}>
+      <Formik
+        initialValues={{ name: '', email: '', password: '' }}
+        onSubmit={onSubmit}
+      >
         {props => (
           <Form>
+            <Field name="name" validate={validate}>
+              {({ field, form }) => (
+                <FormControl
+                  isInvalid={form.errors.name && form.touched.name}
+                  pb="4"
+                >
+                  <FormLabel htmlFor="name">Full Name</FormLabel>
+                  <Input
+                    {...field}
+                    id="name"
+                    placeholder="full name"
+                    bg="white"
+                  />
+                  <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                </FormControl>
+              )}
+            </Field>
             <Field name="email" validate={validate}>
               {({ field, form }) => (
                 <FormControl
@@ -71,7 +89,12 @@ function Login() {
                 <FormControl
                   isInvalid={form.errors.password && form.touched.password}
                 >
-                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <FormLabel htmlFor="password">
+                    Password
+                    <FormHelperText fontSize={'small'} textAlign={'start'}>
+                      Make sure its correct!
+                    </FormHelperText>
+                  </FormLabel>
                   <Input
                     {...field}
                     id="password"
@@ -79,6 +102,7 @@ function Login() {
                     placeholder="password"
                     bg="white"
                   />
+
                   <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                 </FormControl>
               )}
@@ -100,12 +124,12 @@ function Login() {
         mt={'4'}
         colorScheme="twitter"
         width={'14rem'}
-        onClick={() => navigate('/register')}
+        onClick={() => navigate('/login')}
       >
-        Register
+        Login
       </Button>
     </Flex>
   );
 }
 
-export default Login;
+export default Register;

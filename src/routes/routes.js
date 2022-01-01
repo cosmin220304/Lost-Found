@@ -5,19 +5,27 @@ import Home from '../components/screens/Home';
 import Login from '../components/screens/Login';
 import Post from '../components/screens/Post';
 import Profile from '../components/screens/Profile';
+import Register from '../components/screens/Register';
 import { UserContext } from '../hooks/UserContext';
 
 function AppRoutes() {
   const [user] = useContext(UserContext);
 
   if (!user) {
-    return <Login />;
+    return (
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Login />} />
+      </Routes>
+    );
   }
 
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/chat" element={<Chat />} />
       <Route path="/chat/:conversationId" element={<Chat />} />
       <Route path="/post" element={<Post />} />

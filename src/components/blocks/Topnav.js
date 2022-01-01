@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Icon } from '@chakra-ui/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,6 +10,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../hooks/UserContext';
 
 function IconLink({ to, name, icon }) {
   return (
@@ -30,6 +31,8 @@ function IconLink({ to, name, icon }) {
 }
 
 function Topnav() {
+  const [user] = useContext(UserContext);
+
   return (
     <Flex
       align="center"
@@ -37,16 +40,21 @@ function Topnav() {
       h={['20', '10']}
       p={['2', '4']}
       bg={'twitter.400'}
+      display={[user ? 'flex' : 'none', 'flex']}
     >
       <Box flex="1" display={['none', 'none', 'block']}>
         <Text color={['white']} align="start">
           <FontAwesomeIcon icon={faSearch} /> <Link to="/"> Lost & Found</Link>
         </Text>
       </Box>
-      <IconLink to="/" name="Home" icon={faHome} />
-      <IconLink to="/post" name="Post" icon={faPlusCircle} />
-      <IconLink to="/chat" name="Chat" icon={faComment} />
-      <IconLink to="/profile" name="Profile" icon={faUser} />
+      {user && (
+        <>
+          <IconLink to="/" name="Home" icon={faHome} />
+          <IconLink to="/post" name="Post" icon={faPlusCircle} />
+          <IconLink to="/chat" name="Chat" icon={faComment} />
+          <IconLink to="/profile" name="Profile" icon={faUser} />
+        </>
+      )}
     </Flex>
   );
 }

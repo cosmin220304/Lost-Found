@@ -3,6 +3,7 @@ import { Box, ChakraProvider, Flex } from '@chakra-ui/react';
 import Topnav from '../components/blocks/Topnav';
 import Routes from '../routes/routes';
 import './App.css';
+import 'react-chat-elements/dist/main.css';
 
 function App() {
   return (

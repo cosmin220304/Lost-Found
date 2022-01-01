@@ -35,7 +35,7 @@ function Topnav() {
       align="center"
       justify={['space-around', 'flex-end']}
       h={['20', '10']}
-      p="4"
+      p={['2', '4']}
       bg={'twitter.400'}
     >
       <Box flex="1" display={['none', 'none', 'block']}>
@@ -43,8 +43,8 @@ function Topnav() {
           <FontAwesomeIcon icon={faSearch} /> <Link to="/"> Lost & Found</Link>
         </Text>
       </Box>
-      <IconLink to="/post" name="Post" icon={faPlusCircle} />
       <IconLink to="/" name="Home" icon={faHome} />
+      <IconLink to="/post" name="Post" icon={faPlusCircle} />
       <IconLink to="/chat" name="Chat" icon={faComment} />
       <IconLink to="/profile" name="Profile" icon={faUser} />
     </Flex>

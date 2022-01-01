@@ -1,3 +1,9 @@
 body {
   box-sizing: border-box;
 }
+
+.chat-list > * {
+  border: 2px solid #ccc;
+  margin-bottom: 2px;
+  text-align: start;
+}

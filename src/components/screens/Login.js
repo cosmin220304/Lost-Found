@@ -51,7 +51,7 @@ function Login() {
                   isInvalid={form.errors.email && form.touched.email}
                 >
                   <FormLabel htmlFor="email">Email</FormLabel>
-                  <Input {...field} id="email" placeholder="email" />
+                  <Input {...field} id="email" placeholder="email" bg="white" />
                   <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                 </FormControl>
               )}
@@ -71,6 +71,7 @@ function Login() {
                     id="password"
                     type={'password'}
                     placeholder="password"
+                    bg="white"
                   />
                   <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                 </FormControl>

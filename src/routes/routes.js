@@ -17,9 +17,11 @@ function AppRoutes() {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
-      <Route exact path="/chat" element={<Chat />} />
-      <Route exact path="/post" element={<Post />} />
-      <Route exact path="/profile" element={<Profile />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/chat" element={<Chat />} />
+      <Route path="/chat/:conversationId" element={<Chat />} />
+      <Route path="/post" element={<Post />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }

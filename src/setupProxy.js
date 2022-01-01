@@ -27,4 +27,13 @@ module.exports = function (app) {
       pathRewrite: { '^/postService': '' },
     })
   );
+
+  app.use(
+    '/photoService',
+    createProxyMiddleware({
+      target: 'https://cosaft-simp.herokuapp.com/api',
+      changeOrigin: true,
+      pathRewrite: { '^/photoService': '' },
+    })
+  );
 };

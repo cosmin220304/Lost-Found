@@ -8,12 +8,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { UserContextWrapper } from './hooks/UserContext';
 
 ReactDOM.render(
-  <UserContextWrapper>
-    <ColorModeScript />
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </UserContextWrapper>,
+  <StrictMode>
+    <UserContextWrapper>
+      <ColorModeScript />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserContextWrapper>
+  </StrictMode>,
   document.getElementById('root')
 );
 

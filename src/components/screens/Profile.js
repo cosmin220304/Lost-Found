@@ -1,16 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../hooks/UserContext';
 import axios from 'axios';
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Image,
-  Flex,
-  Button,
-  Text,
-} from '@chakra-ui/react';
+import { Image, Flex, Button, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import NotFoundImage from '../../assets/not found.png';
 
 function Profile() {
   const [user, setUser] = useContext(UserContext);
@@ -48,7 +41,12 @@ function Profile() {
       <Text m="4" fontSize="3xl" fontWeight="bold" fontStyle={'italic'}>
         Profile
       </Text>
-      <Image w="10rem" src={image} alt="profile pic" rounded="full" />
+      <Image
+        w="10rem"
+        src={image || NotFoundImage}
+        alt="profile pic"
+        rounded="full"
+      />
       <Text mb="2">{user.name}</Text>
       <Text mb="2">{user.email}</Text>
       <Button w="20rem" colorScheme="twitter" m="2" onClick={logout}>

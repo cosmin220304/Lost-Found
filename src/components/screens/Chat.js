@@ -20,7 +20,7 @@ function Chat() {
         );
         setConversations(data);
         setIsLoading(false);
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 100000));
       }
     })();
   }, []);

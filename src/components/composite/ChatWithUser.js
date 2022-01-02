@@ -84,7 +84,7 @@ function ChatWithUser({ conversationId, width }) {
       <Flex
         direction={'column'}
         w={width}
-        height={['83vh', '50vh']}
+        height={['100vh', '50vh']}
         bg="rgba(243, 243, 243, 0.8)"
         justifyContent={'center'}
         alignItems={'center'}
@@ -108,17 +108,21 @@ function ChatWithUser({ conversationId, width }) {
         height={['83vh', '50vh']}
         bg="rgba(243, 243, 243, 0.8)"
       >
-        <ChatList
-          className="chat-list"
-          dataSource={messages.map(message => ({
-            avatar: message.photo,
-            alt: message.senderId,
-            title: message.senderName,
-            subtitle: message.content || 'Say hi!',
-            date: new Date(message.sentDate),
-            unread: !message?.isRead && message?.senderId != user.id ? 1 : 0,
-          }))}
-        />
+        {messages.length > 0 ? (
+          <ChatList
+            className="chat-list"
+            dataSource={messages.map(message => ({
+              avatar: message.photo,
+              alt: message.senderId,
+              title: message.senderName,
+              subtitle: message.content || 'Say hi!',
+              date: new Date(message.sentDate),
+              unread: !message?.isRead && message?.senderId != user.id ? 1 : 0,
+            }))}
+          />
+        ) : (
+          <div>Say hi!</div>
+        )}
       </Flex>
       <Flex>
         <Input

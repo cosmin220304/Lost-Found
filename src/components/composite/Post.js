@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Spinner, Image, Flex, Text, Box } from '@chakra-ui/react';
 import axios from 'axios';
 import NotFoundImage from '../../assets/not found.png';
+import { useNavigate } from 'react-router-dom';
 
 function Post({ post }) {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [userImage, setUserImage] = useState(null);
   const [postImage, setPostImage] = useState(null);
+  const navigate = useNavigate();
 
   const refreshData = async post => {
     while (1) {
@@ -69,7 +71,14 @@ function Post({ post }) {
   }
 
   return (
-    <Box cursor={'pointer'} boxShadow="md" p="4" bg="white" w="20rem">
+    <Box
+      onClick={() => navigate(`/home/${post.id}`)}
+      cursor={'pointer'}
+      boxShadow="md"
+      p="4"
+      bg="white"
+      w="20rem"
+    >
       <Flex alignItems={'center'}>
         <Image
           w="3rem"

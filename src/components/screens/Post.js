@@ -14,14 +14,20 @@ function Post() {
       <Button
         bg={'twitter.900'}
         h="16"
-        w="90%"
+        w="20rem"
         color="white"
         variant="outline"
         mb="12"
       >
         I lost an object
       </Button>
-      <Button bg={'twitter.900'} h="16" w="90%" color="white" variant="outline">
+      <Button
+        bg={'twitter.900'}
+        h="16"
+        w="20rem"
+        color="white"
+        variant="outline"
+      >
         I found an object
       </Button>
     </Flex>

@@ -1,5 +1,6 @@
 import { Box, Flex, Text, Spinner } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { UserContext } from '../../hooks/UserContext';
 import { ChatList } from 'react-chat-elements';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -10,13 +11,13 @@ function Chat() {
   const { conversationId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [conversations, setConversations] = useState([]);
-  const userId = 123;
+  const [user] = useContext(UserContext);
 
   useEffect(() => {
     (async () => {
       while (1) {
         const { data } = await axios.get(
-          `/chatService/conversations/user/${userId}`
+          `/chatService/conversations/user/${user.id}`
         );
         setConversations(data);
         setIsLoading(false);

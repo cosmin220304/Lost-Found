@@ -14,7 +14,7 @@ function Post({ post }) {
   const refreshData = async post => {
     while (1) {
       axios
-        .get(`userService/user?id=${post.userId}`)
+        .get(`/userService/user?id=${post.userId}`)
         .then(({ data }) => {
           setUser(data);
         })
@@ -22,7 +22,7 @@ function Post({ post }) {
           setUser({ name: 'unkown' });
         });
       axios
-        .get(`photoService/images/${post.userId}`, {
+        .get(`/photoService/images/${post.userId}`, {
           responseType: 'blob',
         })
         .then(({ data }) => {
@@ -36,7 +36,7 @@ function Post({ post }) {
           setUserImage(NotFoundImage);
         });
       axios
-        .get(`photoService/images/${post.details.postId}`, {
+        .get(`/photoService/images/${post.details.postId}`, {
           responseType: 'blob',
         })
         .then(({ data }) => {

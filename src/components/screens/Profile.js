@@ -14,7 +14,7 @@ function Profile() {
     axios
       .get(`photoService/images/${user.id}`, { responseType: 'blob' })
       .then(function (response) {
-        var reader = new window.FileReader();
+        const reader = new window.FileReader();
         reader.readAsDataURL(response.data);
         reader.onload = function () {
           setImage(reader.result);

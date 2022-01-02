@@ -20,11 +20,9 @@ function Register() {
   const [, setUser] = useContext(UserContext);
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
-  const maxNumber = 1;
 
+  const maxNumber = 1;
   const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
     setImages(imageList);
   };
 
@@ -39,12 +37,12 @@ function Register() {
   async function onSubmit(values, actions) {
     try {
       const { data } = await axios.post(
-        `userService/register?name=${values.name}&email=${values.email}&password=${values.password}`,
+        `/userService/register?name=${values.name}&email=${values.email}&password=${values.password}`,
         {}
       );
       setUser(data);
       if (images && images.length > 0) {
-        axios.put(`photoService/images/${data.id}`, {
+        axios.put(`/photoService/images/${data.id}`, {
           base64: images[0].data_url,
         });
       }
@@ -59,8 +57,6 @@ function Register() {
       actions.setSubmitting(false);
     }
   }
-
-  console.log(images);
 
   return (
     <Flex

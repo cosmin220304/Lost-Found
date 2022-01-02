@@ -28,7 +28,7 @@ function Profile() {
   };
 
   const deleteAccount = () => {
-    axios.delete(`userService/delete?id=${user.id}`).then(() => logout());
+    axios.delete(`/userService/delete?id=${user.id}`).then(() => logout());
   };
 
   return (

@@ -10,7 +10,7 @@ function Home() {
   useEffect(() => {
     (async () => {
       while (1) {
-        const { data } = await axios.get(`postService/api/posts/get`, {});
+        const { data } = await axios.get(`/postService/api/posts/get`, {});
         setPosts(data);
         setIsLoading(false);
         await new Promise(resolve => setTimeout(resolve, 100000));
@@ -41,15 +41,18 @@ function Home() {
       alignItems="center"
       justifyContent="center"
       direction="column"
+      bg="twitter.50"
     >
       <Text m="4" fontSize="3xl" fontWeight="bold" fontStyle={'italic'}>
         Home
       </Text>
 
       <Flex
+        direction="row"
         justifyContent={'center'}
         alignItems={'center'}
         flexWrap={'wrap'}
+        bg="twitter.50"
         gap="4"
         h={['80vh', '100%']}
         overflowY={['scroll', 'initial']}

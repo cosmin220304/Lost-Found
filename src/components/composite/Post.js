@@ -13,11 +13,16 @@ function Post({ post }) {
 
   const refreshData = async post => {
     while (1) {
-      axios.get(`userService/user?id=${24 || post.userId}`).then(({ data }) => {
-        setUser(data);
-      });
       axios
-        .get(`photoService/images/${24 || post.userId}`, {
+        .get(`userService/user?id=${post.userId}`)
+        .then(({ data }) => {
+          setUser(data);
+        })
+        .catch(() => {
+          setUser({ name: 'unkown' });
+        });
+      axios
+        .get(`photoService/images/${post.userId}`, {
           responseType: 'blob',
         })
         .then(({ data }) => {
@@ -31,7 +36,9 @@ function Post({ post }) {
           setUserImage(NotFoundImage);
         });
       axios
-        .get(`photoService/images/${post.id}`, { responseType: 'blob' })
+        .get(`photoService/images/${post.details.postId}`, {
+          responseType: 'blob',
+        })
         .then(({ data }) => {
           var reader = new window.FileReader();
           reader.readAsDataURL(data);
@@ -70,9 +77,10 @@ function Post({ post }) {
     );
   }
 
+  console.log(post);
   return (
     <Box
-      onClick={() => navigate(`/home/${post.id}`)}
+      onClick={() => navigate(`/home/${post.details.id}`)}
       cursor={'pointer'}
       boxShadow="md"
       p="4"
@@ -82,6 +90,7 @@ function Post({ post }) {
       <Flex alignItems={'center'}>
         <Image
           w="3rem"
+          fontSize={'xx-small'}
           src={userImage || NotFoundImage}
           alt="profile pic"
           rounded="full"
@@ -117,6 +126,7 @@ function Post({ post }) {
       </Flex>
       <Flex justifyContent={'center'}>
         <Image
+          fontSize={'xx-small'}
           w="10rem"
           src={postImage || NotFoundImage}
           alt="post pic"

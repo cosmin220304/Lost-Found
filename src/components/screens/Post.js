@@ -1,7 +1,10 @@
 import { Button, Flex } from '@chakra-ui/react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Post() {
+  const navigate = useNavigate();
+
   return (
     <Flex
       direction={['column']}
@@ -27,6 +30,7 @@ function Post() {
         w="20rem"
         color="white"
         variant="outline"
+        onClick={() => navigate(`/post/new`)}
       >
         I found an object
       </Button>

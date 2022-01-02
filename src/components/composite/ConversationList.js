@@ -32,12 +32,12 @@ function ConversationList({ conversations, width }) {
         );
 
         let { data: data2 } = axios.get(
-          `userService/user?id=${conversation.user.id}`
+          `/userService/user?id=${conversation.user.id}`
         );
         conversation.user.name = data2;
 
         let { data } = await axios.get(
-          `photoService/images/${conversation.user.id}`,
+          `/photoService/images/${conversation.user.id}`,
           {
             responseType: 'blob',
           }

@@ -39,12 +39,12 @@ function ChatWithUser({ conversationId, width }) {
     for (let message of data) {
       try {
         let { data: data2 } = axios.get(
-          `userService/user?id=${message.senderId}`
+          `/userService/user?id=${message.senderId}`
         );
         message.senderName = data2;
 
         let { data } = await axios.get(
-          `photoService/images/${message.senderId}`,
+          `/photoService/images/${message.senderId}`,
           {
             responseType: 'blob',
           }

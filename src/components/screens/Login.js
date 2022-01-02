@@ -28,7 +28,7 @@ function Login() {
   async function onSubmit(values, actions) {
     try {
       const { data } = await axios.post(
-        `userService/login?email=${values.email}&password=${values.password}`,
+        `/userService/login?email=${values.email}&password=${values.password}`,
         {}
       );
       setUser(data);

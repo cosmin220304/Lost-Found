@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Chat from '../components/screens/Chat';
+import CreatePost from '../components/screens/CreatePost';
 import Home from '../components/screens/Home';
 import HomeDetails from '../components/screens/HomeDetails';
 import Login from '../components/screens/Login';
@@ -25,12 +26,13 @@ function AppRoutes() {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
-      <Route exact path="/home/:postId" element={<HomeDetails />} />
+      <Route path="/home/:postId" element={<HomeDetails />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/chat" element={<Chat />} />
       <Route path="/chat/:conversationId" element={<Chat />} />
-      <Route path="/post" element={<Post />} />
+      <Route path="/post/new" element={<CreatePost />} />
+      <Route exact path="/post" element={<Post />} />
       <Route path="/profile" element={<Profile />} />
     </Routes>
   );

@@ -38,10 +38,10 @@ function ChatWithUser({ conversationId, width }) {
     );
     for (let message of data) {
       try {
-        let { data: data2 } = axios.get(
+        let { data: data2 } = await axios.get(
           `/userService/user?id=${message.senderId}`
         );
-        message.senderName = data2;
+        message.senderName = data2.name;
 
         let { data } = await axios.get(
           `/photoService/images/${message.senderId}`,

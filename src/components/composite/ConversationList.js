@@ -31,10 +31,10 @@ function ConversationList({ conversations, width }) {
           c => c != user.id
         );
 
-        let { data: data2 } = axios.get(
+        let { data: data2 } = await axios.get(
           `/userService/user?id=${conversation.user.id}`
         );
-        conversation.user.name = data2;
+        conversation.user.name = data2.name;
 
         let { data } = await axios.get(
           `/photoService/images/${conversation.user.id}`,
